@@ -670,9 +670,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="wb-acc">
       <div class="wb-acc-header">Responsive</div>
       <div class="wb-acc-body">
-        <div class="wb-group"><label><input type="checkbox" id="adv-hide-desktop"> Hide on Desktop</label></div>
-        <div class="wb-group"><label><input type="checkbox" id="adv-hide-tablet"> Hide on Tablet</label></div>
-        <div class="wb-group"><label><input type="checkbox" id="adv-hide-mobile"> Hide on Mobile</label></div>
+        <div class="wb-group responsive-hide"><input type="checkbox" id="adv-hide-desktop"><label> Hide on Desktop</label></div>
+        <div class="wb-group responsive-hide"><input type="checkbox" id="adv-hide-tablet"> <label>Hide on Tablet</label></div>
+        <div class="wb-group responsive-hide"><input type="checkbox" id="adv-hide-mobile"> <label>Hide on Mobile</label></div>
       </div>
     </div>
 
@@ -724,46 +724,26 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("adv-zindex").value = el.style.zIndex || "";
     } catch (e) {}
 
-    // ----- wire accordion open/close ----- (simple)
-    styleContainer.querySelectorAll(".wb-acc-header").forEach((h) => {
-      h.addEventListener("click", (ev) => {
-        const acc = h.closest(".wb-acc");
-        acc.classList.toggle("open");
-      });
-    });
-    advContainer.querySelectorAll(".wb-acc-header").forEach((h) => {
-      h.addEventListener("click", () => {
-        const acc = h.closest(".wb-acc");
-        acc.classList.toggle("open");
-      });
-    });
+   // accordion toggles (after you set styleContainer.innerHTML and advContainer.innerHTML)
+styleContainer.querySelectorAll(".wb-acc-header").forEach((h) => {
+  h.addEventListener("click", () => h.closest(".wb-acc").classList.toggle("open"));
+});
+advContainer.querySelectorAll(".wb-acc-header").forEach((h) => {
+  h.addEventListener("click", () => h.closest(".wb-acc").classList.toggle("open"));
+});
 
-    // ----- Typography button opens modal (we use modal created earlier) -----
-    const openTyp = document.getElementById("open-typography");
-    if (openTyp)
-      openTyp.addEventListener("click", () => {
-        // populate modal fields from computed style and open
-        const modal = document.getElementById("typography-modal");
-        if (!modal) return;
-        const tb = (id) => document.getElementById(id);
-        try {
-          tb("tb-font-family").value =
-            el.style.fontFamily || cs.fontFamily || "";
-          tb("tb-font-size").value = el.style.fontSize || cs.fontSize || "";
-          tb("tb-font-weight").value =
-            el.style.fontWeight || cs.fontWeight || "";
-          tb("tb-line-height").value =
-            el.style.lineHeight || cs.lineHeight || "";
-          tb("tb-letter-spacing").value =
-            el.style.letterSpacing || cs.letterSpacing || "";
-          tb("tb-text-transform").value =
-            el.style.textTransform || cs.textTransform || "";
-          const c = rgbToHex(cs.color || "#000");
-          if (tb("tb-color")) tb("tb-color").value = c;
-        } catch (e) {}
-        modal.classList.remove("hidden");
-        modal.setAttribute("aria-hidden", "false");
-      });
+// Typography "Open" button
+const openTyp = document.getElementById("open-typography");
+if (openTyp) {
+  openTyp.addEventListener("click", () => {
+    const modal = document.getElementById("typography-modal");
+    if (!modal) return;
+    // (populate fields if you want, then…)
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+  });
+}
+
 
     // ----- wire content inputs (live -> debounced) -----
     const deb = (fn, ms = 120) => {
@@ -959,7 +939,13 @@ document.addEventListener("DOMContentLoaded", () => {
         refreshCodePreview();
       });
     });
-  } // end updatePropertiesPanel
+  }
+
+
+
+
+
+
 
   function applyProperties() {
     const applyTo = selectedElements.size
@@ -1833,7 +1819,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------- init right-panel tabs + typography modal close/apply ---------- */
-  (function initElementorPanel() {
+  function initElementorPanel() {
     // tabs
     document.querySelectorAll("#right-panel .tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -1918,7 +1904,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // open modal by clicking the "Open" button (if panel generated after selection)
     // updatePropertiesPanel attaches handler to that button when it creates the DOM
-  });
+  };
+  
+
+  initElementorPanel();
+  console.log("[WB] initElementorPanel()");
 
   log("script ready");
 });

@@ -178,9 +178,38 @@
           <!-- STYLE TAB -->
           <div class="prop-tab hidden" id="prop-tab-style">
             <div id="properties-style" class="wb-accordion">
-              <!-- Filled by JS -->
+
+              <!-- Typography Accordion -->
+              <div class="accordion-item">
+                <button class="accordion-header">Typography</button>
+                <div class="accordion-body">
+                  <button id="open-typography" class="btn-sm">Edit Typography</button>
+                </div>
+              </div>
+
+              <!-- Background Accordion -->
+              <div class="accordion-item">
+                <button class="accordion-header">Background</button>
+                <div class="accordion-body">
+                  <label>Background Color</label>
+                  <input type="color" id="bg-color">
+                </div>
+              </div>
+
+              <!-- Spacing Accordion -->
+              <div class="accordion-item">
+                <button class="accordion-header">Spacing</button>
+                <div class="accordion-body">
+                  <label>Margin</label>
+                  <input id="margin" placeholder="e.g., 10px">
+                  <label>Padding</label>
+                  <input id="padding" placeholder="e.g., 15px">
+                </div>
+              </div>
+
             </div>
           </div>
+
 
           <!-- ADVANCED TAB -->
           <div class="prop-tab hidden" id="prop-tab-advanced">
@@ -211,47 +240,62 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- TYPOGRAPHY MODAL -->
-      <div id="typography-modal" class="wb-modal hidden" aria-hidden="true">
-        <div class="wb-modal-backdrop"></div>
-        <div class="wb-modal-content" role="dialog" aria-modal="true">
-          <div class="wb-modal-header">
-            <h3>Typography</h3>
-            <button id="typography-close" class="btn-sm" title="Close">✕</button>
-          </div>
-          <div class="wb-modal-body">
-            <label>Font family</label>
-            <input id="tb-font-family" placeholder="e.g., Inter, Arial">
-            <label>Font size</label>
-            <input id="tb-font-size" placeholder="e.g., 24px or 1.5rem">
-            <label>Font weight</label>
-            <select id="tb-font-weight">
-              <option value="">(default)</option>
-              <option>300</option>
-              <option>400</option>
-              <option>500</option>
-              <option>600</option>
-              <option>700</option>
-            </select>
-            <label>Line height</label>
-            <input id="tb-line-height" placeholder="e.g., 1.4 or 24px">
-            <label>Letter spacing</label>
-            <input id="tb-letter-spacing" placeholder="e.g., 0.5px">
-            <label>Text transform</label>
-            <select id="tb-text-transform">
-              <option value="">(none)</option>
-              <option value="uppercase">Uppercase</option>
-              <option value="lowercase">Lowercase</option>
-              <option value="capitalize">Capitalize</option>
-            </select>
-            <label>Text color</label>
-            <input id="tb-color" type="color">
-          </div>
-          <div class="wb-modal-footer" style="display:flex; gap:8px; justify-content:flex-end; margin-top:8px;">
-            <button id="typography-apply" class="btn-success">Apply</button>
-            <button id="typography-cancel" class="btn-sm">Cancel</button>
+        <!-- TYPOGRAPHY MODAL -->
+        <div id="typography-modal" class="wb-modal hidden" aria-hidden="true">
+          <div class="wb-modal-backdrop"></div>
+          <div class="wb-modal-content" role="dialog" aria-modal="true">
+            <div class="wb-modal-header">
+              <h3>Typography</h3>
+              <button id="typography-close" class="btn-sm" title="Close">
+                <i class="fas fa-close"></i>
+              </button>
+            </div>
+            <div class="wb-modal-body">
+              <div class="typo-lable-input">
+                <label>Font family</label>
+                <input id="tb-font-family" placeholder="e.g., Inter, Arial">
+              </div>
+              <div class="typo-lable-input">
+                <label>Font size</label>
+                <input id="tb-font-size" placeholder="e.g., 24px or 1.5rem">
+              </div>
+              <div class="typo-lable-input">
+                <label>Font weight</label>
+                <select id="tb-font-weight">
+                  <option value="">(default)</option>
+                  <option>300</option>
+                  <option>400</option>
+                  <option>500</option>
+                  <option>600</option>
+                  <option>700</option>
+                </select>
+              </div>
+              <div class="typo-lable-input">
+                <label>Line height</label>
+                <input id="tb-line-height" placeholder="e.g., 1.4 or 24px">
+              </div>
+              <div class="typo-lable-input">
+                <label>Letter spacing</label>
+                <input id="tb-letter-spacing" placeholder="e.g., 0.5px">
+              </div>
+              <div class="typo-lable-input">
+                <label>Text transform</label>
+                <select id="tb-text-transform">
+                  <option value="">(none)</option>
+                  <option value="uppercase">Uppercase</option>
+                  <option value="lowercase">Lowercase</option>
+                  <option value="capitalize">Capitalize</option>
+                </select>
+              </div>
+              <div class="typo-lable-input">
+                <label>Text color</label>
+                <input id="tb-color" type="color">
+              </div>
+            </div>
+            <div class="wb-modal-footer" style="display:flex; gap:8px; justify-content:flex-end; margin-top:8px;">
+              <button id="typography-apply" class="btn-success">Apply</button>
+              <button id="typography-cancel" class="btn-sm">Cancel</button>
+            </div>
           </div>
         </div>
       </div>

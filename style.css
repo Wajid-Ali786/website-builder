@@ -113,6 +113,7 @@
      width: var(--properties-width);
      min-width: 240px;
      max-width: 420px;
+     position: relative;
  }
 
  .center-panel {
@@ -175,7 +176,7 @@
  }
 
  .panel-content {
-     padding: 18px;
+     padding: 5px;
      overflow-y: auto;
      flex: 1;
  }
@@ -767,7 +768,7 @@
      background: #fff;
      border: 1px solid #eef2ff;
      border-radius: 10px;
-     overflow: hidden;
+     overflow: auto;
  }
 
  .wb-acc-header {
@@ -830,13 +831,11 @@
  /* spacing widget (four inputs + link) */
  .spacing-row {
      display: flex;
-     gap: 8px;
      align-items: center;
  }
 
  .spacing-sides {
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
+     display: flex;
      gap: 6px;
      width: 100%;
  }
@@ -857,6 +856,7 @@
      border-radius: 8px;
      border: 1px solid var(--light-gray);
      background: #fff;
+     color: var(--dark);
      cursor: pointer;
  }
 
@@ -865,14 +865,24 @@
      border-color: var(--primary);
  }
 
+ .wb-group.responsive-hide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+ }
+
+ .wb-group.responsive-hide input[type="checkbox"] {
+     width: 20px !important;
+     margin: 0;
+ }
  /* typography modal */
  .wb-modal {
-     position: fixed;
-     inset: 0;
+     position: absolute;
+     top: 5px;
+     right: 10px;
      display: flex;
-     align-items: center;
-     justify-content: center;
-     z-index: 1200;
+     z-index: 12000;
+     width: 90%;
  }
 
  .wb-modal.hidden {
@@ -882,18 +892,21 @@
  .wb-modal-backdrop {
      position: absolute;
      inset: 0;
-     background: rgba(15, 23, 42, 0.45);
  }
 
  .wb-modal-content {
      position: relative;
      background: #fff;
      border-radius: 12px;
-     width: 420px;
-     max-width: 96%;
      padding: 12px;
      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.25);
      z-index: 2;
+     width: 100%;
+ }
+
+ .wb-modal-content .wb-modal-header {
+     display: flex;
+     justify-content: space-between;
  }
 
  .wb-modal-body {
@@ -908,8 +921,14 @@
  .wb-modal-body input,
  .wb-modal-body select {
      padding: 8px;
+     width: 130px;
      border-radius: 8px;
      border: 1px solid var(--light-gray);
+ }
+
+ .wb-modal-body .typo-lable-input {
+     display: flex;
+     justify-content: space-between;
  }
 
  /* small helpers */
